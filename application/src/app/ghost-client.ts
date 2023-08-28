@@ -12,11 +12,23 @@ export async function getNavigation() {
   });
 }
 
-export async function getPosts() {
+export async function getPosts(limit: number) {
   return await api.posts
     .browse({
-      limit: 10,
-      include: ["tags", "authors"],
+      limit: limit,
+      include: ["tags"],
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+}
+
+export async function getFeaturedPosts(limit: number) {
+  return await api.posts
+    .browse({
+      limit: limit,
+      filter: "featured:true",
+      include: ["tags"],
     })
     .catch((err) => {
       console.error(err);

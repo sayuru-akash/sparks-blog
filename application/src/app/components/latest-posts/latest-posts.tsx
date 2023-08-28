@@ -5,11 +5,18 @@ import {
   faAngleDoubleRight,
   faHandPointRight,
 } from "@fortawesome/free-solid-svg-icons";
+import { getPosts } from "@/app/ghost-client";
 
-export default function LatestPosts() {
+export default async function LatestPosts() {
+  const getPost = await getPosts(3);
+
+  if (!getPost) {
+    throw new Error("Failed to load posts");
+  }
+
   return (
     <div className="mx-auto px-4 py-8">
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 sm:gap-0">
+      <div className="flex flex-row justify-between items-start gap-2">
         <h2 className="text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-3xl lg:text-4xl mb-2 sm:mb-0">
           Latest Posts
         </h2>
@@ -20,113 +27,47 @@ export default function LatestPosts() {
           Read All Posts
         </Link>
       </div>
-      <div className="w-full flex flex-col lg:flex-row mt-14 gap-12">
-        <div className="w-full lg:w-2/3 flex flex-col gap-6">
-          <div className="flex flex-col gap-6">
-            <div className="h-96 md:h-48 flex flex-col items-center bg-white rounded-lg shadow md:flex-row hover:bg-gray-100">
-              <>
-                <Image
-                  className="object-cover w-full md:w-48 h-48 rounded-lg md:rounded-none md:rounded-l-lg"
-                  src="http://127.0.0.1:2368/content/images/size/w1000/2023/08/Frame-10.png"
-                  alt="frame"
-                  height={800}
-                  width={800}
-                />
-                <div className="flex flex-col justify-center p-4 py-6 h-full">
-                  <p className="mb-2 text-2xl font-bold text-gray-900">
-                    This is a title
-                  </p>
-                  <p className="mb-3 text-sm text-gray-700">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua.
-                  </p>
-                  <Link
-                    href="https://sample.com"
-                    className="text-sm text-black hover:underline"
-                  >
-                    <p className="flex">
-                      Read more
-                      <FontAwesomeIcon
-                        icon={faAngleDoubleRight}
-                        height={12}
-                        width={12}
-                        className="ml-1 mt-1"
+      <div className="w-full flex flex-col lg:flex-row mt-14 gap-8 lg:gap-12">
+        <div className="w-full lg:w-2/3 flex flex-col gap-8 lg:gap-6">
+          {getPost?.map((item) => {
+            return (
+              <div className="flex flex-col gap-6" key={item.id}>
+                <Link href="https://sample.com">
+                  <div className="h-96 md:h-48 flex flex-col items-center bg-white rounded-lg shadow md:flex-row hover:bg-gray-100">
+                    <>
+                      <Image
+                        className="object-cover w-full md:w-48 h-48 rounded-lg md:rounded-none md:rounded-l-lg"
+                        src="http://127.0.0.1:2368/content/images/size/w1000/2023/08/Frame-10.png"
+                        alt="frame"
+                        height={800}
+                        width={800}
                       />
-                    </p>
-                  </Link>
-                </div>
-              </>
-            </div>
-          </div>
-          <div className="flex flex-col gap-6">
-            <div className="h-96 md:h-48 flex flex-col items-center bg-white rounded-lg shadow md:flex-row hover:bg-gray-100">
-              <Image
-                className="object-cover w-full md:w-48 h-48 rounded-lg md:rounded-none md:rounded-l-lg"
-                src="http://127.0.0.1:2368/content/images/size/w1000/2023/08/Frame-10.png"
-                alt="frame"
-                height={800}
-                width={800}
-              />
-              <div className="flex flex-col justify-between p-4 py-6 h-full">
-                <p className="mb-2 text-2xl font-bold text-gray-900">
-                  This is a title
-                </p>
-                <p className="mb-3 text-sm text-gray-700">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                </p>
-                <Link
-                  href="https://sample.com"
-                  className="text-sm text-black hover:underline"
-                >
-                  <p className="flex">
-                    Read more
-                    <FontAwesomeIcon
-                      icon={faAngleDoubleRight}
-                      height={12}
-                      width={12}
-                      className="ml-1 mt-1"
-                    />
-                  </p>
+                      <div className="flex flex-col justify-center p-4 py-6 h-full">
+                        <p className="mb-2 text-2xl font-bold text-gray-900">
+                          This is a title
+                        </p>
+                        <p className="mb-3 text-sm text-gray-700">
+                          Lorem ipsum dolor sit amet, consectetur adipiscing
+                          elit, sed do eiusmod tempor incididunt ut labore et
+                          dolore magna aliqua.
+                        </p>
+                        <p className="flex text-sm text-black">
+                          Read more
+                          <FontAwesomeIcon
+                            icon={faAngleDoubleRight}
+                            height={12}
+                            width={12}
+                            className="ml-1 mt-1"
+                            bounce
+                          />
+                        </p>
+                      </div>
+                    </>
+                  </div>
                 </Link>
               </div>
-            </div>
-          </div>
-          <div className="flex flex-col gap-6">
-            <div className="h-96 md:h-48 flex flex-col items-center bg-white rounded-lg shadow md:flex-row hover:bg-gray-100">
-              <Image
-                className="object-cover w-full md:w-48 h-48 rounded-lg md:rounded-none md:rounded-l-lg"
-                src="http://127.0.0.1:2368/content/images/size/w1000/2023/08/Frame-10.png"
-                alt="frame"
-                height={800}
-                width={800}
-              />
-              <div className="flex flex-col justify-between p-4 py-6 h-full">
-                <p className="mb-2 text-2xl font-bold text-gray-900">
-                  This is a title
-                </p>
-                <p className="mb-3 text-sm text-gray-700">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                </p>
-                <Link
-                  href="https://sample.com"
-                  className="text-sm text-black hover:underline"
-                >
-                  <p className="flex">
-                    Read more
-                    <FontAwesomeIcon
-                      icon={faAngleDoubleRight}
-                      height={12}
-                      width={12}
-                      className="ml-1 mt-1"
-                    />
-                  </p>
-                </Link>
-              </div>
-            </div>
-          </div>
+            );
+          })}
         </div>
         <div className="w-full lg:w-1/3 flex flex-col">
           <div className="bg-white border flex flex-col align-middle items-center justify-evenly border-gray-200 rounded-2xl shadow p-12 text-center h-full w-full">

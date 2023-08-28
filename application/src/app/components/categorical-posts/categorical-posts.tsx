@@ -6,7 +6,7 @@ import { faAngleDoubleRight } from "@fortawesome/free-solid-svg-icons";
 export default function CategoricalPosts() {
   return (
     <div className="mx-auto px-4 py-8">
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 sm:gap-0">
+      <div className="flex flex-row justify-between items-start gap-2">
         <h2 className="text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-3xl lg:text-4xl mb-2 sm:mb-0">
           Case Studies
         </h2>
@@ -17,7 +17,7 @@ export default function CategoricalPosts() {
           Read More
         </Link>
       </div>
-      <div className="flex flex-col sm:flex-row gap-2 sm:gap-12 mt-14 w-full">
+      <div className="flex flex-col sm:flex-row gap-8 lg:gap-6 mt-14 w-full">
         <div className="w-full sm:w-1/2 lg:w-1/3">
           <div className="min-h-full">
             <Link href={"https://sample.com"}>
@@ -50,6 +50,7 @@ export default function CategoricalPosts() {
                     height={12}
                     width={12}
                     className="ml-1 mt-1"
+                    bounce
                   />
                 </p>
               </Link>
