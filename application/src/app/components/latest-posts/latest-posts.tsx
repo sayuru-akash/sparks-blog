@@ -32,24 +32,22 @@ export default async function LatestPosts() {
           {getPost?.map((item) => {
             return (
               <div className="flex flex-col gap-6" key={item.id}>
-                <Link href="https://sample.com">
+                <Link href={`/${item.slug}`}>
                   <div className="h-96 md:h-48 flex flex-col items-center bg-white rounded-lg shadow md:flex-row hover:bg-gray-100">
                     <>
                       <Image
                         className="object-cover w-full md:w-48 h-48 rounded-lg md:rounded-none md:rounded-l-lg"
-                        src="http://127.0.0.1:2368/content/images/size/w1000/2023/08/Frame-10.png"
+                        src={item.feature_image || "/logo.png"}
                         alt="frame"
                         height={800}
                         width={800}
                       />
                       <div className="flex flex-col justify-center p-4 py-6 h-full">
                         <p className="mb-2 text-2xl font-bold text-gray-900">
-                          This is a title
+                          {item.title}
                         </p>
                         <p className="mb-3 text-sm text-gray-700">
-                          Lorem ipsum dolor sit amet, consectetur adipiscing
-                          elit, sed do eiusmod tempor incididunt ut labore et
-                          dolore magna aliqua.
+                          {item.excerpt && item.excerpt.slice(0, 160) + "..."}
                         </p>
                         <p className="flex text-sm text-black">
                           Read more
