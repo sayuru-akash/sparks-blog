@@ -8,7 +8,10 @@ export default function Footer() {
       <footer className="bg-white min-w-screen w-screen overflow-hidden border-t border-gray-200">
         <div className="flex container flex-col mx-auto p-4 w-full md:py-8">
           <div className="flex flex-col sm:flex-row items-center w-full justify-between pb-8">
-            <Link href="/" className="flex items-start w-full sm:w-fit sm:items-center mb-4 sm:mb-0">
+            <Link
+              href="/"
+              className="flex items-start w-full sm:w-fit sm:items-center mb-4 sm:mb-0"
+            >
               <span className="self-center text-3xl text-purple-600 font-bold whitespace-nowrap">
                 sparks
               </span>
@@ -40,15 +43,16 @@ export default function Footer() {
             <p className="flex items-center justify-center gap-2">
               © 2023 All Rights Reserved
             </p>
-            <p className="flex items-center justify-center gap-1 mt-2">
-              A proud initiative brought to you with{" "}
+            <p className="flex flex-col sm:flex-row items-center justify-center gap-1 mt-2">
+              A proud initiative
+              <span className="hidden sm:flex">brought to you with</span>{" "}
               <FontAwesomeIcon
                 icon={faHeart}
                 height={12}
                 width={12}
-                className="text-purple-500"
+                className="text-purple-500 hidden sm:flex"
               />
-              by{" "}
+              from{" "}
               <Link href="/" className="hover:text-purple-600">
                 Codezela Technologies
               </Link>
