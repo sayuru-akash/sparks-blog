@@ -44,10 +44,10 @@ export default async function LatestPosts() {
                       />
                       <div className="flex flex-col justify-center p-4 py-6 h-full">
                         <p className="mb-2 text-2xl font-bold text-gray-900">
-                          {item.title}
+                          {item.title?.slice(0, 50)}
                         </p>
                         <p className="mb-3 text-sm text-gray-700">
-                          {item.excerpt && item.excerpt.slice(0, 160) + "..."}
+                          {item.excerpt?.slice(0, 160) + "..."}
                         </p>
                         <p className="flex text-sm text-black">
                           Read more

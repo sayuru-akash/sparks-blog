@@ -35,6 +35,18 @@ export async function getFeaturedPosts(limit: number) {
     });
 }
 
+export async function getPostsByTag(tag: string, limit: number) {
+  return await api.posts
+    .browse({
+      filter: `tag:${tag}`,
+      limit: limit,
+      include: ["tags"],
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+}
+
 export async function getPostBySlug(slug: string) {
   return await api.posts
     .read({

@@ -29,6 +29,6 @@ body {
 
 #navbar-mobile {
   transition: max-height 0.3s ease-in-out;
-  height: 100vh; /* Adjust this value to a reasonable max height */
+  height: 100vh;
   overflow: hidden;
 }
