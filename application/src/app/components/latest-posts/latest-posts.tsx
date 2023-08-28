@@ -10,7 +10,7 @@ export default function LatestPosts() {
   return (
     <div className="mx-auto px-4 py-8">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 sm:gap-0">
-        <h2 className="text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-3xl lg:text-4xl text-dark mb-2 sm:mb-0">
+        <h2 className="text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-3xl lg:text-4xl mb-2 sm:mb-0">
           Latest Posts
         </h2>
         <Link

@@ -6,7 +6,7 @@ export default function FeaturedPost() {
   return (
     <div className="mx-auto px-4 py-8">
       <div
-        className="flex rounded-lg shadow-md p-6 h-96 bg-cover bg-center"
+        className="flex rounded-lg shadow-md p-6 h-[32rem] hover:h-[36rem] hover:-mt-8 bg-cover bg-center"
         style={{
           backgroundImage:
             "url('http://127.0.0.1:2368/content/images/size/w1000/2023/08/Frame-10.png')",
@@ -29,7 +29,7 @@ export default function FeaturedPost() {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor
           </p>
-          <Link href="#" className="text-black dark:text-white hover:underline">
+          <Link href="#" className="text-black hover:underline">
             <p className="flex">
               Read more
               <FontAwesomeIcon
