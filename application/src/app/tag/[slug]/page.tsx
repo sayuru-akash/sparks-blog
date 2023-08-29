@@ -1,4 +1,4 @@
-import { getPostsByTag, getPosts } from "@/app/ghost-client";
+import { getPostsByTag, getPosts, getFeaturedPosts } from "@/app/ghost-client";
 import { faAngleDoubleRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
@@ -18,12 +18,15 @@ export default async function PostsbyTag({
   if (params.slug === "all") {
     getPost = await getPosts(postPerPage);
     pageTitle = "All Posts";
+  } else if (params.slug === "featured") {
+    getPost = await getFeaturedPosts(postPerPage);
+    pageTitle = "Featured Posts";
   } else {
     getPost = await getPostsByTag(params.slug, postPerPage);
     pageTitle = params.slug.replace(/-/g, " ");
   }
 
-  if (!getPost) {
+  if (!getPost || getPost.length === 0) {
     return notFound();
   }
 
