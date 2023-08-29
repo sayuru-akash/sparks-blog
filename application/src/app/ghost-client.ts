@@ -12,34 +12,41 @@ export async function getNavigation() {
   });
 }
 
-export async function getPosts(limit: number) {
+export async function getPosts(limit: number, page: number = 1) {
   return await api.posts
     .browse({
       limit: limit,
       include: ["tags"],
+      page: page,
     })
     .catch((err) => {
       console.error(err);
     });
 }
 
-export async function getFeaturedPosts(limit: number) {
+export async function getFeaturedPosts(limit: number, page: number = 1) {
   return await api.posts
     .browse({
       limit: limit,
       filter: "featured:true",
       include: ["tags"],
+      page: page,
     })
     .catch((err) => {
       console.error(err);
     });
 }
 
-export async function getPostsByTag(tag: string, limit: number) {
+export async function getPostsByTag(
+  tag: string,
+  limit: number,
+  page: number = 1
+) {
   return await api.posts
     .browse({
       filter: `tag:${tag}`,
       limit: limit,
+      page: page,
       include: ["tags"],
     })
     .catch((err) => {
@@ -49,9 +56,14 @@ export async function getPostsByTag(tag: string, limit: number) {
 
 export async function getPostBySlug(slug: string) {
   return await api.posts
-    .read({
-      slug,
-    })
+    .read(
+      {
+        slug,
+      },
+      {
+        include: ["authors", "tags"],
+      }
+    )
     .catch((err) => {
       console.error(err);
     });

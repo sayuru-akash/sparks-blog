@@ -21,7 +21,7 @@ export default async function LatestPosts() {
           Latest Posts
         </h2>
         <Link
-          href="https://sample.com"
+          href="/tag/all/"
           className="flex border text-black border-black hover:text-white hover:bg-black font-medium rounded-full text-sm px-3 py-2 text-center mr-2 mb-2 sm:mr-0 sm:mb-0"
         >
           Read All Posts
@@ -69,7 +69,7 @@ export default async function LatestPosts() {
         </div>
         <div className="w-full lg:w-1/3 flex flex-col">
           <div className="bg-white border flex flex-col align-middle items-center justify-evenly border-gray-200 rounded-2xl shadow p-12 text-center h-full w-full">
-            <Link href="https://sample.com">
+            <Link href="https://codezela.com">
               <Image
                 src={"/logo.png"}
                 width={300}

@@ -22,11 +22,18 @@ export default async function FeaturedPost() {
       >
         <div className="flex flex-col p-0 lg:p-6 text-white gap-4 h-full justify-end">
           <div className="flex">
-            <button className="text-white border font-mono hover:text-black hover:bg-white font-medium rounded-full text-sm px-3 py-2 text-center mr-2 mb-2">
+            <Link
+              href={`/tag/${
+                getTrendingPost[0].tags &&
+                getTrendingPost[0].tags[0].slug &&
+                getTrendingPost[0].tags[0].slug
+              }`}
+              className="text-white border font-mono hover:text-black hover:bg-white font-medium rounded-full text-sm px-3 py-2 text-center mr-2 mb-2"
+            >
               {getTrendingPost[0].tags &&
                 getTrendingPost[0].tags[0].name &&
                 getTrendingPost[0].tags[0].name}
-            </button>
+            </Link>
             <button className="text-white border font-mono hover:text-black hover:bg-white font-medium rounded-full text-sm px-3 py-2 text-center mr-2 mb-2">
               TRENDING
             </button>
@@ -39,7 +46,10 @@ export default async function FeaturedPost() {
           <p className="text-lg sm:text-2xl font-md mb-2">
             {getTrendingPost[0].excerpt?.slice(0, 180) + "..."}
           </p>
-          <Link href={`/${getTrendingPost[0].slug}`} className="text-white hover:underline">
+          <Link
+            href={`/${getTrendingPost[0].slug}`}
+            className="text-white hover:underline"
+          >
             <p className="flex">
               Read more
               <FontAwesomeIcon

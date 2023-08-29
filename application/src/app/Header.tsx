@@ -1,16 +1,18 @@
 "use client";
-import {
-  faBars,
-  faCancel,
-  faClose,
-  faCross,
-} from "@fortawesome/free-solid-svg-icons";
+import { faBars, faClose } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 
-export default function Header() {
+export default function Header({
+  navLinks,
+}: {
+  navLinks: { label: string; url: string }[];
+}) {
   const [isNavOpen, setIsNavOpen] = useState(false);
+  const pathname = usePathname();
+  const normalizedPathname = pathname.endsWith("/") ? pathname : `${pathname}/`;
 
   return (
     <>
@@ -27,31 +29,26 @@ export default function Header() {
               id="navbar-desktop"
             >
               <ul className="flex flex-col w-full mt-8 justify-center font-light items-center border rounded-lg lg:flex-row lg:space-x-8 lg:mt-0 lg:border-0 lg:bg-white">
-                <li>
-                  <Link
-                    href="/"
-                    className="block py-2 pl-3 pr-4 text-white bg-purple-700 rounded lg:bg-transparent lg:text-purple-700 lg:p-0 "
-                    aria-current="page"
-                  >
-                    Home
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/about"
-                    className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 lg:hover:bg-transparent lg:hover:text-purple-700 lg:p-0 "
-                  >
-                    About
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/contact"
-                    className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 lg:hover:bg-transparent lg:hover:text-purple-700 lg:p-0"
-                  >
-                    Contact
-                  </Link>
-                </li>
+                {navLinks.map((link) => (
+                  <li key={link.label}>
+                    <Link
+                      href={link.url}
+                      className={`block py-2 pl-3 pr-4 ${
+                        link.url === "/" ? "text-gray-900 font-semibold" : "text-gray-900"
+                      } rounded ${
+                        link.url !== "/" && "hover:bg-gray-100"
+                      } lg:bg-transparent lg:p-0 ${
+                        link.url !== "/" &&
+                        "lg:hover:bg-transparent lg:hover:text-purple-700"
+                      } ${
+                        normalizedPathname === link.url ? "text-purple-700" : ""
+                      }`}
+                      aria-current={link.url === "/" ? "page" : undefined}
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
             <Link
@@ -85,31 +82,26 @@ export default function Header() {
           id="navbar-mobile"
         >
           <ul className="flex container flex-col w-full mt-8 font-medium mx-4 lg:flex-row lg:space-x-8 lg:mt-0 lg:border-0 lg:bg-white">
-            <li>
-              <Link
-                href="/"
-                className="block py-8 pl-4 text-lg pr-4 text-white bg-purple-700 rounded lg:bg-transparent lg:text-purple-700 lg:p-0 "
-                aria-current="page"
-              >
-                Home
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/about"
-                className="block py-8 pl-4 text-lg pr-4 text-gray-900 rounded hover:bg-gray-100 lg:hover:bg-transparent lg:hover:text-purple-700 lg:p-0 "
-              >
-                About
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/contact"
-                className="block py-8 pl-4 text-lg pr-4 text-gray-900 rounded hover:bg-gray-100 lg:hover:bg-transparent lg:hover:text-purple-700 lg:p-0"
-              >
-                Contact
-              </Link>
-            </li>
+            {navLinks.map((link) => (
+              <li key={link.label}>
+                <Link
+                  href={link.url}
+                  className={`block py-8 pl-4 text-lg pr-4 ${
+                    link.url === "/"
+                      ? "text-white bg-purple-700"
+                      : "text-gray-900"
+                  } rounded ${
+                    link.url !== "/" && "hover:bg-gray-100"
+                  } lg:bg-transparent lg:p-0 ${
+                    link.url !== "/" &&
+                    "lg:hover:bg-transparent lg:hover:text-purple-700"
+                  }`}
+                  aria-current={link.url === "/" ? "page" : undefined}
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
       </header>

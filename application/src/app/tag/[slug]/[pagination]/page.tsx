@@ -1,31 +1,40 @@
+import { getPostsByTag, getPosts } from "@/app/ghost-client";
+import { faAngleDoubleRight } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import Image from "next/image";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleDoubleRight } from "@fortawesome/free-solid-svg-icons";
-import { getPostsByTag } from "@/app/ghost-client";
+import Pagination from "@/app/pagination";
 
-export default async function CategoricalPosts(props: { category: string }) {
-  const getCategoryPost = await getPostsByTag(props.category, 6);
+export default async function PostsbyTag({
+  params,
+}: {
+  params: { slug: string; pagination: number };
+}) {
+  let getPost = null;
+  let pageTitle: string;
+  const postPerPage = 12;
 
-  if (!getCategoryPost) {
-    throw new Error("Failed to load posts");
+  if (params.slug === "all") {
+    getPost = await getPosts(postPerPage, params.pagination);
+    pageTitle = "All Posts";
+  } else {
+    getPost = await getPostsByTag(params.slug, postPerPage, params.pagination);
+    pageTitle = params.slug.replace(/-/g, " ");
+  }
+
+  if (!getPost) {
+    throw new Error("Failed to load post");
   }
 
   return (
-    <div className="mx-auto px-4 py-8">
-      <div className="flex flex-row justify-between items-start gap-2">
-        <h2 className="text-4xl font-extrabold leading-none capitalize tracking-tight text-gray-900 md:text-3xl lg:text-4xl mb-2 sm:mb-0">
-          {props.category.replace(/-/g, " ")}
-        </h2>
-        <Link
-          href={`/tag/${props.category}/`}
-          className="flex text-black border border-black hover:text-white hover:bg-black font-medium rounded-full text-sm px-3 py-2 text-center mr-2 mb-2 sm:mr-0 sm:mb-0"
-        >
-          Read More
-        </Link>
+    <div className="container mx-auto px-4 py-8">
+      <div className="flex flex-row justify-between items-start gap-2 mt-24">
+        <h1 className="text-4xl font-extrabold leading-none capitalize tracking-tight text-gray-900 md:text-3xl lg:text-4xl mb-2 sm:mb-0">
+          {pageTitle}
+        </h1>
       </div>
       <div className="flex flex-col flex-wrap sm:flex-row mt-14 w-full ml-0 sm:-ml-8">
-        {getCategoryPost?.map((item) => {
+        {getPost?.map((item) => {
           return (
             <div
               className="w-full sm:w-1/2 lg:w-1/3 pl-0 sm:pl-8"
@@ -71,6 +80,10 @@ export default async function CategoricalPosts(props: { category: string }) {
           );
         })}
       </div>
+      <Pagination
+        item={getPost.meta.pagination}
+        currentUrl={`./tag/${params.slug}`}
+      />
     </div>
   );
 }

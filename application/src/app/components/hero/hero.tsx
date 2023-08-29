@@ -24,11 +24,18 @@ export default async function Hero() {
             }}
           >
             <div className="absolute bottom-0 left-0 p-6 text-white">
-              <button className="text-white border-2 hover:text-black hover:bg-white font-mono rounded-full text-xs uppercase px-3 py-2 text-center mr-2">
+              <Link
+                href={`/tag/${
+                  getFeaturedPost[0].tags &&
+                  getFeaturedPost[0].tags[0].slug &&
+                  getFeaturedPost[0].tags[0].slug
+                }`}
+                className="text-white border-2 hover:text-black hover:bg-white font-mono rounded-full text-xs uppercase px-3 py-2 text-center mr-2"
+              >
                 {getFeaturedPost[0].tags &&
                   getFeaturedPost[0].tags[0].name &&
                   getFeaturedPost[0].tags[0].name}
-              </button>
+              </Link>
               <p className="text-2xl md:text-3xl font-primary font-semibold my-4">
                 {getFeaturedPost[0].title?.slice(0, 30) + "..."}
               </p>
@@ -48,11 +55,18 @@ export default async function Hero() {
             }}
           >
             <div className="absolute bottom-0 left-0 p-6 text-white">
-              <button className="text-white border-2 border-white hover:text-black hover:bg-white font-mono rounded-full text-xs uppercase px-3 py-2 text-center mr-2">
+              <Link
+                href={`/tag/${
+                  getFeaturedPost[1].tags &&
+                  getFeaturedPost[1].tags[0].slug &&
+                  getFeaturedPost[1].tags[0].slug
+                }`}
+                className="text-white border-2 border-white hover:text-black hover:bg-white font-mono rounded-full text-xs uppercase px-3 py-2 text-center mr-2"
+              >
                 {getFeaturedPost[1].tags &&
                   getFeaturedPost[1].tags[0].name &&
                   getFeaturedPost[1].tags[0].name}
-              </button>
+              </Link>
               <p className="text-2xl md:text-3xl lg:text-2xl font-primary font-semibold my-4">
                 {getFeaturedPost[1].title?.slice(0, 30) + "..."}
               </p>
@@ -72,11 +86,18 @@ export default async function Hero() {
             }}
           >
             <div className="absolute bottom-0 left-0 p-6 text-white">
-              <button className="text-white border-2 border-white hover:text-black hover:bg-white font-mono rounded-full text-xs uppercase px-3 py-2 text-center mr-2">
+              <Link
+                href={`/tag/${
+                  getFeaturedPost[2].tags &&
+                  getFeaturedPost[2].tags[0].slug &&
+                  getFeaturedPost[2].tags[0].slug
+                }`}
+                className="text-white border-2 border-white hover:text-black hover:bg-white font-mono rounded-full text-xs uppercase px-3 py-2 text-center mr-2"
+              >
                 {getFeaturedPost[2].tags &&
                   getFeaturedPost[2].tags[0].name &&
                   getFeaturedPost[2].tags[0].name}
-              </button>
+              </Link>
               <p className="text-2xl md:text-3xl lg:text-2xl font-primary font-semibold my-4">
                 {getFeaturedPost[2].title?.slice(0, 30) + "..."}
               </p>
