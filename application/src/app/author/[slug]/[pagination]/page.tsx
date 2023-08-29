@@ -1,4 +1,4 @@
-import { getPostsByTag, getPosts, getFeaturedPosts } from "@/app/ghost-client";
+import { getPostsByAuthor } from "@/app/ghost-client";
 import { faAngleDoubleRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
@@ -6,25 +6,17 @@ import Image from "next/image";
 import Pagination from "@/app/pagination";
 import { notFound } from "next/navigation";
 
-export default async function PostsbyTagPaginated({
+export default async function AuthorSinglePaginated({
   params,
 }: {
   params: { slug: string; pagination: number };
 }) {
   let getPost = null;
   let pageTitle: string;
-  const postPerPage = 12;
+  const postPerPage = 6;
 
-  if (params.slug === "all") {
-    getPost = await getPosts(postPerPage, params.pagination);
-    pageTitle = "All Posts";
-  } else if (params.slug === "featured") {
-    getPost = await getFeaturedPosts(postPerPage, params.pagination);
-    pageTitle = "Featured Posts";
-  } else {
-    getPost = await getPostsByTag(params.slug, postPerPage, params.pagination);
-    pageTitle = params.slug.replace(/-/g, " ");
-  }
+  getPost = await getPostsByAuthor(params.slug, postPerPage, params.pagination);
+  pageTitle = params.slug.replace(/-/g, " ");
 
   if (!getPost || getPost.length === 0) {
     return notFound();
@@ -32,10 +24,55 @@ export default async function PostsbyTagPaginated({
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <div className="flex flex-row justify-between items-start gap-2 mt-24">
-        <h1 className="text-4xl font-extrabold leading-none capitalize tracking-tight text-gray-900 md:text-3xl lg:text-4xl mb-2 sm:mb-0">
-          {pageTitle}
-        </h1>
+      <div
+        className="bg-white rounded-xl z-0 -mb-24 lg:-mb-48 shadow-md p-6 h-48 lg:h-96 mt-16 bg-cover bg-top"
+        style={{
+          backgroundImage: `url(${
+            getPost[0].primary_author?.cover_image ||
+            getPost[0].primary_author?.cover_image ||
+            "/logo.png"
+          })`,
+        }}
+      ></div>
+      <div className="flex flex-col p-6 z-80 mx-8 lg:mx-44 mb-16 bg-white h-full text-white gap-4 sm:gap-8 text-center items-center border rounded-lg justify-center shadow-lg">
+        <div className="flex flex-col items-center py-2">
+          <h6 className="mb-1 text-sm font-medium text-gray-600">
+            Experience the posts by:
+          </h6>
+          <Image
+            className="w-24 h-24 mt-6 mb-2 rounded-full shadow-lg"
+            src={
+              `${
+                getPost &&
+                getPost[0].primary_author &&
+                getPost[0].primary_author.profile_image
+              }` || "/logo.png"
+            }
+            alt="Author image"
+            height={400}
+            width={400}
+          />
+          <h6 className="mb-1 text-xl font-medium text-gray-900">
+            {getPost[0].primary_author?.name}
+          </h6>
+          <span className="text-sm text-gray-500">
+            {getPost[0].primary_author?.bio?.slice(0, 100)}
+          </span>
+          <div className="w-full flex mt-4 space-x-3 md:mt-6 justify-center items-center">
+            <Link
+              href={`${
+                (getPost &&
+                  getPost[0].primary_author &&
+                  getPost[0].primary_author.website !== null &&
+                  getPost[0].primary_author.website) ||
+                "https://codezela.com/contact"
+              }`}
+              className="w-full inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-center text-white bg-purple-700 rounded-lg hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300"
+            >
+              Contact
+            </Link>
+          </div>
+        </div>
       </div>
       <div className="flex flex-col flex-wrap sm:flex-row mt-14 w-full ml-0 sm:-ml-8">
         {getPost?.map((item) => {
@@ -86,7 +123,7 @@ export default async function PostsbyTagPaginated({
       </div>
       <Pagination
         item={getPost.meta.pagination}
-        currentUrl={`./tag/${params.slug}`}
+        currentUrl={`./author/${params.slug}`}
       />
     </div>
   );

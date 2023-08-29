@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { getPostBySlug } from "../ghost-client";
 import Link from "next/link";
+import Image from "next/image";
 
 export default async function PostSingle({
   params,
@@ -12,6 +13,8 @@ export default async function PostSingle({
   if (!getPost) {
     return notFound();
   }
+
+  console.log(getPost);
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -36,7 +39,7 @@ export default async function PostSingle({
           </div>
         </div>
       </div>
-      <div className="flex flex-col p-6 text-white dark:text-black gap-4 sm:gap-8 h-full text-center items-center">
+      <div className="flex text-black flex-col p-6 gap-4 sm:gap-8 h-full text-center items-center">
         <Link
           href={
             (getPost.primary_tag &&
@@ -57,6 +60,57 @@ export default async function PostSingle({
           {getPost.html && (
             <div dangerouslySetInnerHTML={{ __html: getPost.html }} />
           )}
+        </div>
+      </div>
+      <div className="flex flex-col p-6 mb-16 text-white gap-4 sm:gap-8 h-full text-center items-center border rounded-lg justify-center shadow-sm">
+        <div className="flex flex-col items-center py-2">
+          <h6 className="mb-1 text-sm font-medium text-gray-600">
+            Brought to you by:
+          </h6>
+          <Image
+            className="w-24 h-24 mt-6 mb-2 rounded-full shadow-lg"
+            src={
+              `${
+                getPost &&
+                getPost.primary_author &&
+                getPost.primary_author.profile_image
+              }` || "/logo.png"
+            }
+            alt="Author image"
+            height={400}
+            width={400}
+          />
+          <h6 className="mb-1 text-xl font-medium text-gray-900">
+            {getPost.primary_author?.name}
+          </h6>
+          <span className="text-sm text-gray-500">
+            {getPost.primary_author?.bio?.slice(0, 100)}
+          </span>
+          <div className="flex mt-4 space-x-3 md:mt-6">
+            <Link
+              href={`/author/${
+                getPost && getPost.primary_author && getPost.primary_author.slug
+              }`}
+              className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-purple-700 rounded-lg hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300"
+            >
+              Read more from{" "}
+              {getPost &&
+                getPost.primary_author &&
+                getPost.primary_author.name?.slice(0, 10)}
+            </Link>
+            <Link
+              href={`${
+                (getPost &&
+                  getPost.primary_author &&
+                  getPost.primary_author.website !== null &&
+                  getPost.primary_author.website) ||
+                "https://codezela.com/contact"
+              }`}
+              className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200"
+            >
+              Contact
+            </Link>
+          </div>
         </div>
       </div>
     </div>

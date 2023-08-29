@@ -32,7 +32,7 @@ export default function Pagination({
               href={
                 item.prev === 1
                   ? `/${currentUrl}`
-                  : `/${currentUrl}${item.prev}`
+                  : `/${currentUrl}/${item.prev}`
               }
               className="px-3 py-2 mr-2 border border-transparent rounded-md  leading-tight text-black bg-white hover:text-purple-700"
             >
@@ -48,7 +48,7 @@ export default function Pagination({
         <li>
           {item.next ? (
             <Link
-              href={`/${currentUrl}${item.next}`}
+              href={`/${currentUrl}/${item.next}`}
               className="px-3 py-2 ml-2 border border-transparent rounded-md leading-tight text-black bg-white hover:text-purple-700"
             >
               Next

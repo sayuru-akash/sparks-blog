@@ -54,6 +54,23 @@ export async function getPostsByTag(
     });
 }
 
+export async function getPostsByAuthor(
+  slug: string,
+  limit: number,
+  page: number = 1
+) {
+  return await api.posts
+    .browse({
+      filter: `author:${slug}`,
+      limit: limit,
+      include: ["authors", "tags"],
+      page: page,
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+}
+
 export async function getPostBySlug(slug: string) {
   return await api.posts
     .read(
