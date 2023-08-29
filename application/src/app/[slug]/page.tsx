@@ -1,4 +1,6 @@
+import { notFound } from "next/navigation";
 import { getPostBySlug } from "../ghost-client";
+import Link from "next/link";
 
 export default async function PostSingle({
   params,
@@ -8,7 +10,7 @@ export default async function PostSingle({
   const getPost = await getPostBySlug(params.slug);
 
   if (!getPost) {
-    throw new Error("Failed to load post");
+    return notFound();
   }
 
   return (
@@ -35,11 +37,19 @@ export default async function PostSingle({
         </div>
       </div>
       <div className="flex flex-col p-6 text-white dark:text-black gap-4 sm:gap-8 h-full text-center items-center">
-        <button className="text-black border border-purple-600/50 hover:text-white hover:bg-purple-600 font-light rounded-full text-xs sm:text-sm px-3 py-2 text-center">
+        <Link
+          href={
+            (getPost.primary_tag &&
+              getPost.primary_tag.slug &&
+              `/tag/${getPost.primary_tag.slug}`) ||
+            ""
+          }
+          className="text-black border border-purple-600/50 hover:text-white hover:bg-purple-600 font-light rounded-full text-xs sm:text-sm px-3 py-2 text-center"
+        >
           {getPost.primary_tag &&
             getPost.primary_tag.name &&
             getPost.primary_tag.name}
-        </button>
+        </Link>
         <p className="text-2xl sm:text-4xl font-semibold mb-2 p-0 lg:px-48">
           {getPost.title}
         </p>

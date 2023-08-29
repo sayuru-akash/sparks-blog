@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import Image from "next/image";
 import Pagination from "@/app/pagination";
+import { notFound } from "next/navigation";
 
 export default async function PostsbyTag({
   params,
@@ -23,7 +24,7 @@ export default async function PostsbyTag({
   }
 
   if (!getPost) {
-    throw new Error("Failed to load post");
+    return notFound();
   }
 
   return (

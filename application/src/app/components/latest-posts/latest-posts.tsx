@@ -1,11 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faAngleDoubleRight,
-  faHandPointRight,
-} from "@fortawesome/free-solid-svg-icons";
+import { faAngleDoubleRight } from "@fortawesome/free-solid-svg-icons";
 import { getPosts } from "@/app/ghost-client";
+import NewsletterForm from "./newsletter-form";
 
 export default async function LatestPosts() {
   const getPost = await getPosts(3);
@@ -34,33 +32,31 @@ export default async function LatestPosts() {
               <div className="flex flex-col gap-6" key={item.id}>
                 <Link href={`/${item.slug}`}>
                   <div className="h-96 md:h-48 flex flex-col items-center bg-white rounded-lg shadow md:flex-row hover:bg-gray-100">
-                    <>
-                      <Image
-                        className="object-cover w-full md:w-48 h-48 rounded-lg md:rounded-none md:rounded-l-lg"
-                        src={item.feature_image || "/logo.png"}
-                        alt="frame"
-                        height={800}
-                        width={800}
-                      />
-                      <div className="flex flex-col justify-center p-4 py-6 h-full">
-                        <p className="mb-2 text-2xl font-bold text-gray-900">
-                          {item.title?.slice(0, 50)}
-                        </p>
-                        <p className="mb-3 text-sm text-gray-700">
-                          {item.excerpt?.slice(0, 160) + "..."}
-                        </p>
-                        <p className="flex text-sm text-black">
-                          Read more
-                          <FontAwesomeIcon
-                            icon={faAngleDoubleRight}
-                            height={12}
-                            width={12}
-                            className="ml-1 mt-1"
-                            bounce
-                          />
-                        </p>
-                      </div>
-                    </>
+                    <Image
+                      className="object-cover w-full md:w-48 h-48 rounded-lg md:rounded-none md:rounded-l-lg"
+                      src={item.feature_image || "/logo.png"}
+                      alt="frame"
+                      height={800}
+                      width={800}
+                    />
+                    <div className="flex flex-col justify-center p-4 py-6 h-full">
+                      <p className="mb-2 text-2xl font-bold text-gray-900">
+                        {item.title?.slice(0, 50)}
+                      </p>
+                      <p className="mb-3 text-sm text-gray-700">
+                        {item.excerpt?.slice(0, 160) + "..."}
+                      </p>
+                      <p className="flex text-sm text-black">
+                        Read more
+                        <FontAwesomeIcon
+                          icon={faAngleDoubleRight}
+                          height={12}
+                          width={12}
+                          className="ml-1 mt-1"
+                          bounce
+                        />
+                      </p>
+                    </div>
                   </div>
                 </Link>
               </div>
@@ -78,42 +74,7 @@ export default async function LatestPosts() {
                 className="w-20 h-20 object-contain mx-auto"
               />
             </Link>
-            <form className="space-y-8">
-              <span className="text-xl font-medium text-gray-900 text-center">
-                Subscribe to our <br />
-                <span className="font-bold text-purple-500">NEWSLETTER</span>
-              </span>
-              <p className="text-md font-sm text-gray-900 text-center">
-                Join the{" "}
-                <span className="text-purple-500 font-semibold">
-                  #CodezelaCommunity
-                </span>{" "}
-                and stay ahead of the curve with our newsletter on what we do,
-                global tech news, and trends.
-              </p>
-              <div>
-                <input
-                  type="email"
-                  name="email"
-                  id="email"
-                  placeholder="Your Email Address"
-                  className="text-center text-purple-600 bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                  required
-                />
-              </div>
-              <button
-                type="submit"
-                className="w-full flex justify-center text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-              >
-                Subscribe for Free
-                <FontAwesomeIcon
-                  icon={faHandPointRight}
-                  height={12}
-                  width={12}
-                  className="ml-2 mt-1"
-                />
-              </button>
-            </form>
+            <NewsletterForm />
           </div>
         </div>
       </div>
