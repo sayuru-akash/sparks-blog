@@ -34,7 +34,9 @@ export default function Header({
                     <Link
                       href={link.url}
                       className={`block py-2 pl-3 pr-4 ${
-                        link.url === "/" ? "text-gray-900 font-semibold" : "text-gray-900"
+                        link.url === "/"
+                          ? "text-gray-900 font-semibold"
+                          : "text-gray-900"
                       } rounded ${
                         link.url !== "/" && "hover:bg-gray-100"
                       } lg:bg-transparent lg:p-0 ${
