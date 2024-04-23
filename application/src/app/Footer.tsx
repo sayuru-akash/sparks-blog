@@ -37,7 +37,7 @@ export default function Footer({
           </div>
           <div className="flex flex-col items-center border-t border-gray-200 pt-8 justify-center text-sm text-gray-500 text-center">
             <p className="flex items-center justify-center gap-2">
-              © 2023 All Rights Reserved
+              © 2024 All Rights Reserved
             </p>
             <p className="flex flex-col sm:flex-row items-center justify-center gap-1 mt-2">
               A proud initiative
