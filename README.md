@@ -1,5 +1,6 @@
 <div align="center">
-  # Sparks by Codezela
+  
+# Sparks by Codezela
 
   *[Sparks](https://sparks.codezela.com) — An Initiative by Codezela Technologies*
 
