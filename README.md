@@ -1,15 +1,12 @@
 <div align="center">
-
-  ![Sparks Logo](application/public/logo.png)
-
   # Sparks by Codezela
 
   *[Sparks](https://sparks.codezela.com) — An Initiative by Codezela Technologies*
 
-  [![Next.js](https://img.shields.io/badge/Next.js-13.4.19-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
-  [![React](https://img.shields.io/badge/React-18.2.0-blue?style=for-the-badge&logo=react)](https://reactjs.org/)
-  [![TypeScript](https://img.shields.io/badge/TypeScript-5.2.2-blue?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
-  [![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.3.3-38B2AC?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)
+  [![Next.js](https://img.shields.io/badge/Next.js-16.1.2-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
+  [![React](https://img.shields.io/badge/React-19.0.0-blue?style=for-the-badge&logo=react)](https://reactjs.org/)
+  [![TypeScript](https://img.shields.io/badge/TypeScript-5.7.3-blue?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
+  [![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4.17-38B2AC?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)
   [![Ghost CMS](https://img.shields.io/badge/Ghost-CMS-15171A?style=for-the-badge&logo=ghost)](https://ghost.org/)
 
   **A modern technology blog platform featuring the latest tech news, case studies, and industry trends**
@@ -25,6 +22,7 @@
 ## Table of Contents
 
 - [Overview](#overview)
+- [What's New in v2.0](#whats-new-in-v20)
 - [Features](#features)
 - [Tech Stack](#tech-stack)
 - [Architecture](#architecture)
@@ -39,6 +37,7 @@
 - [Development Workflow](#development-workflow)
 - [Contributing](#contributing)
 - [Troubleshooting](#troubleshooting)
+- [Migration Guide](#migration-guide)
 - [Roadmap](#roadmap)
 - [License](#license)
 - [Contact](#contact)
@@ -50,7 +49,7 @@
 
 **Sparks by Codezela** is a contemporary technology blog platform developed as an initiative by [Codezela Technologies](https://codezela.com). It serves as a knowledge-sharing hub for technology enthusiasts, developers, and industry professionals to explore tech news, case studies, and emerging trends.
 
-The platform is built with cutting-edge web technologies, leveraging the power of **Next.js 13** with the App Router, **React 18**, **TypeScript**, and **Tailwind CSS** for a seamless, performant, and visually appealing user experience. Content management is handled through **Ghost CMS**, providing a robust and flexible headless CMS architecture.
+The platform is built with cutting-edge web technologies, leveraging the power of **Next.js 16** with the App Router and Turbopack, **React 19**, **TypeScript**, and **Tailwind CSS** for a seamless, performant, and visually appealing user experience. Content management is handled through **Ghost CMS**, providing a robust and flexible headless CMS architecture.
 
 ### Key Highlights
 
@@ -62,6 +61,37 @@ The platform is built with cutting-edge web technologies, leveraging the power o
 - Author profiles and publications
 - Tag-based content categorization
 - Deployed on Vercel for optimal performance
+
+---
+
+## What's New in v2.0
+
+### Major Upgrades (January 2026)
+
+- **Next.js 16.1.2** with Turbopack for lightning-fast builds
+- **React 19** with latest features and improved performance
+- **TypeScript 5.7.3** with enhanced strict mode
+- **Modern ESLint 9** with flat config format
+- **Tailwind CSS 3.4.17** with custom animations and dark mode support
+
+### New Features
+
+- **Lazy Ghost API Initialization**: Build-safe environment variable handling
+- **Enhanced Error Boundaries**: Better error handling with detailed dev mode info
+- **Modern Metadata API**: Improved SEO with Open Graph and Twitter cards
+- **Next.js Image Optimization**: Uses `remotePatterns` instead of deprecated `domains`
+- **Type-Safe API Client**: Proper TypeScript types from Ghost SDK
+- **Responsive Hero Component**: Using `next/image` with `fill` prop
+- **Custom CSS Utilities**: Shimmer animations, custom scrollbars
+- **Standalone Output**: Optimized for containerized deployments
+
+### Technical Improvements
+
+- Removed all inline styles in favor of Tailwind classes
+- Server components properly handle missing data gracefully
+- API routes support both GET and POST methods
+- Better TypeScript strict mode with unused variable checks
+- Turbopack enabled by default for development
 
 ---
 
@@ -101,32 +131,33 @@ The platform is built with cutting-edge web technologies, leveraging the power o
 
 | Technology | Version | Purpose |
 |------------|---------|---------|
-| [Next.js](https://nextjs.org/) | 13.4.19 | React framework with App Router |
-| [React](https://reactjs.org/) | 18.2.0 | UI library |
-| [TypeScript](https://www.typescriptlang.org/) | 5.2.2 | Type-safe JavaScript |
+| [Next.js](https://nextjs.org/) | 16.1.2 | React framework with App Router and Turbopack |
+| [React](https://reactjs.org/) | 19.0.0 | UI library |
+| [TypeScript](https://www.typescriptlang.org/) | 5.7.3 | Type-safe JavaScript |
 
 ### Styling & UI
 
 | Technology | Version | Purpose |
 |------------|---------|---------|
-| [Tailwind CSS](https://tailwindcss.com/) | 3.3.3 | Utility-first CSS framework |
-| [PostCSS](https://postcss.org/) | 8.4.28 | CSS transformation |
-| [Autoprefixer](https://github.com/postcss/autoprefixer) | 10.4.15 | Vendor prefixing |
-| [FontAwesome](https://fontawesome.com/) | 6.4.2 | Icon library |
+| [Tailwind CSS](https://tailwindcss.com/) | 3.4.17 | Utility-first CSS framework |
+| [PostCSS](https://postcss.org/) | 8.4.49 | CSS transformation |
+| [Autoprefixer](https://github.com/postcss/autoprefixer) | 10.4.20 | Vendor prefixing |
+| [FontAwesome](https://fontawesome.com/) | 6.7.2 | Icon library |
 
 ### Backend & CMS
 
 | Technology | Version | Purpose |
 |------------|---------|---------|
-| [Ghost CMS API](https://ghost.org/) | 1.11.16 | Headless CMS for content |
-| [Next.js API Routes](https://nextjs.org/docs/api-routes/introduction) | - | Serverless API endpoints |
+| [Ghost CMS API](https://ghost.org/) | 1.12.3 | Headless CMS for content |
+| [Next.js API Routes](https://nextjs.org/docs/app/building-your-application/routing/route-handlers) | - | Serverless API endpoints |
 
 ### Development Tools
 
 | Technology | Version | Purpose |
 |------------|---------|---------|
-| [ESLint](https://eslint.org/) | 8.48.0 | Code linting |
-| [Validator](https://github.com/validatorjs/validator.js) | 13.11.0 | Input validation |
+| [ESLint](https://eslint.org/) | 9.18.0 | Code linting |
+| [TypeScript ESLint](https://typescript-eslint.io/) | 8.19.1 | TypeScript linting |
+| [Validator](https://github.com/validatorjs/validator.js) | 13.12.0 | Input validation |
 | [Vercel](https://vercel.com/) | - | Deployment platform |
 
 ---
@@ -220,19 +251,21 @@ This will install all required packages defined in [package.json](application/pa
 
 ### 3. Set Up Environment Variables
 
-Create a `.env.local` file in the `application` directory:
+Copy the example environment file and add your credentials:
 
 ```bash
 cd application
-touch .env.local
+cp .env.example .env.local
 ```
 
-Add your Ghost CMS credentials (see [Environment Configuration](#environment-configuration)):
+Then edit `.env.local` with your Ghost CMS credentials (see [Environment Configuration](#environment-configuration)):
 
 ```env
 GHOST_URL=https://your-ghost-instance.com
 CONTENT_KEY=your-ghost-content-api-key
 ```
+
+> **Note**: You can use [.env.example](application/.env.example) as a template for all required environment variables.
 
 ### 4. Run the Development Server
 
@@ -307,18 +340,26 @@ sparks-blog/
 │   │       │   ├── hero/              # Hero section
 │   │       │   └── latest-posts/      # Latest posts with newsletter
 │   │       │
-│   │       ├── ghost-client.ts        # Ghost API client
-│   │       ├── layout.tsx             # Root layout
+│   │       ├── ghost-client.ts        # Ghost API client (lazy-loaded)
+│   │       ├── layout.tsx             # Root layout with metadata
 │   │       ├── page.tsx               # Homepage
-│   │       ├── header.tsx             # Navigation header
-│   │       ├── footer.tsx             # Footer component
+│   │       ├── Header.tsx             # Navigation header
+│   │       ├── Footer.tsx             # Footer component
+│   │       ├── pagination.tsx         # Pagination component
+│   │       ├── error.tsx              # Error boundary
+│   │       ├── not-found.tsx          # 404 page
+│   │       ├── global-error.tsx       # Global error boundary
 │   │       └── globals.css            # Global styles
 │   │
-│   ├── next.config.js                 # Next.js configuration
+│   ├── types/                         # TypeScript type definitions
+│   │   └── index.ts                  # Shared types
+│   │
+│   ├── next.config.mjs                # Next.js configuration (ESM)
+│   ├── eslint.config.mjs              # ESLint flat config
 │   ├── tailwind.config.ts             # Tailwind CSS configuration
 │   ├── tsconfig.json                  # TypeScript configuration
 │   ├── postcss.config.js              # PostCSS configuration
-│   ├── .eslintrc.json                 # ESLint configuration
+│   ├── .env.example                   # Environment variables template
 │   ├── vercel.json                    # Vercel deployment config
 │   └── package.json                   # Project dependencies
 │
@@ -344,9 +385,9 @@ In the [application](application/) directory, you can run:
 ```bash
 npm run dev
 ```
-Starts the development server with hot-reload enabled.
+Starts the development server with **Turbopack** enabled for faster builds.
 - **URL**: [http://localhost:3000](http://localhost:3000)
-- **Mode**: Development
+- **Mode**: Development with Turbopack
 - **Features**: Fast Refresh, TypeScript checking, source maps
 
 ### Production Build
@@ -359,6 +400,7 @@ Creates an optimized production build of the application.
 - Minifies code
 - Optimizes assets
 - Generates static pages where possible
+- Standalone output for containerized deployments
 
 ### Production Server
 
@@ -373,12 +415,20 @@ Starts the production server.
 ### Linting
 
 ```bash
-npm run lint
+npm run lint          # Check for linting issues
+npm run lint:fix      # Auto-fix linting issues
 ```
-Runs ESLint to check code quality and find potential issues.
+Runs ESLint with the new flat config to check code quality.
 - Checks all `.js`, `.jsx`, `.ts`, `.tsx` files
-- Displays warnings and errors
-- Can be configured in [.eslintrc.json](application/.eslintrc.json)
+- Uses TypeScript ESLint for type-aware linting
+- Configured in [eslint.config.mjs](application/eslint.config.mjs)
+
+### Type Checking
+
+```bash
+npm run type-check
+```
+Runs TypeScript compiler without emitting files to check for type errors.
 
 ---
 
@@ -848,9 +898,25 @@ CONTENT_KEY=your-content-api-key
 #### Issue: "Images not loading"
 
 **Solution**:
-1. Check [next.config.js](application/next.config.js) for allowed image domains
-2. Verify the domain is added to the `images.domains` array
+1. Check [next.config.mjs](application/next.config.mjs) for allowed image patterns
+2. Verify the domain is added to `images.remotePatterns` array
 3. Ensure images are accessible from Ghost CMS
+
+#### Issue: "ESLint flat config errors"
+
+**Solution**:
+The project now uses ESLint flat config (ESLint 9+). Make sure you're using:
+```bash
+npm run lint      # Uses new flat config
+npm run lint:fix  # Auto-fixes issues
+```
+
+#### Issue: "Build works but pages show no content"
+
+**Solution**:
+1. Verify your `.env.local` file has correct Ghost CMS credentials
+2. Check that Ghost CMS is accessible from your network
+3. Look for console errors showing Ghost API failures
 
 #### Issue: "Build fails on Vercel"
 
@@ -882,6 +948,45 @@ If you encounter issues not covered here:
    - Error messages
    - Steps to reproduce
    - Your environment details
+
+---
+
+## Migration Guide
+
+### Migrating from v1.x (Next.js 13) to v2.0 (Next.js 16)
+
+If you're upgrading from an older version of this project, follow these steps:
+
+#### 1. Update Dependencies
+
+```bash
+cd application
+rm -rf node_modules package-lock.json
+npm install
+```
+
+#### 2. Configuration Files
+
+The following configuration files have changed:
+- `next.config.js` → `next.config.mjs` (now ESM format)
+- `.eslintrc.json` → `eslint.config.mjs` (flat config)
+- `tsconfig.json` - Updated for React 19 and stricter settings
+
+#### 3. Environment Variables
+
+No changes required - your existing `.env.local` file will work.
+
+#### 4. Breaking Changes
+
+- **Pagination Component**: Import has changed from `Pagination` to `PaginationComponent`
+- **Ghost Client**: Now uses lazy initialization - no API calls during build
+- **Image Domains**: Changed from `images.domains` to `images.remotePatterns`
+
+#### 5. New Features to Adopt
+
+- Use `npm run dev` for Turbopack-enabled development
+- Use `npm run type-check` for type checking without building
+- Components now gracefully handle missing data (no more error throws)
 
 ---
 
@@ -923,7 +1028,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 ```
 MIT License
 
-Copyright (c) 2024 Codezela Technologies
+Copyright (c) 2026 Codezela Technologies
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

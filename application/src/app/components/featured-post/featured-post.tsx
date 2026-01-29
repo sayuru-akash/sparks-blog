@@ -6,8 +6,8 @@ import { getPostsByTag } from "@/app/ghost-client";
 export default async function FeaturedPost() {
   const getTrendingPost = await getPostsByTag("trending", 1);
 
-  if (!getTrendingPost) {
-    throw new Error("Failed to load posts");
+  if (!getTrendingPost || getTrendingPost.length === 0) {
+    return null;
   }
 
   return (

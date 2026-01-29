@@ -11,12 +11,9 @@ export default async function AuthorSinglePaginated({
 }: {
   params: { slug: string; pagination: number };
 }) {
-  let getPost = null;
-  let pageTitle: string;
   const postPerPage = 6;
 
-  getPost = await getPostsByAuthor(params.slug, postPerPage, params.pagination);
-  pageTitle = params.slug.replace(/-/g, " ");
+  const getPost = await getPostsByAuthor(params.slug, postPerPage, params.pagination);
 
   if (!getPost || getPost.length === 0) {
     return notFound();

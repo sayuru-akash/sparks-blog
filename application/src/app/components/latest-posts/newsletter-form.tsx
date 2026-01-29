@@ -21,7 +21,7 @@ export default function NewsletterForm() {
             setSuccessMessage("Thank you for subscribing sparks, stay tuned!");
             setErrorMessage("");
             target.email.value = "";
-          } catch (error) {
+          } catch {
             setSuccessMessage("");
             setErrorMessage("Sorry, something went wrong, please try again!");
           }

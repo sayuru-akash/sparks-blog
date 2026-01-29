@@ -1,26 +1,29 @@
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
+import type { NavigationItem } from "./ghost-client";
 
-export default function Footer({
-  navLinks,
-}: {
-  navLinks: { label: string; url: string }[];
-}) {
+interface FooterProps {
+  navLinks: NavigationItem[];
+}
+
+export default function Footer({ navLinks }: FooterProps) {
+  const currentYear = new Date().getFullYear();
+
   return (
-    <>
-      <footer className="bg-white min-w-screen w-screen overflow-hidden border-t border-gray-200">
-        <div className="flex container flex-col mx-auto p-4 w-full md:py-8">
-          <div className="flex flex-col sm:flex-row items-center w-full justify-between pb-8">
-            <Link
-              href="/"
-              className="flex items-start w-full sm:w-fit sm:items-center mb-4 sm:mb-0"
-            >
-              <span className="self-center text-3xl text-purple-600 font-bold whitespace-nowrap">
-                sparks
-              </span>
-            </Link>
-            <ul className="flex flex-col mt-6 sm:mt-0 sm:flex-row flex-wrap items-start w-full sm:w-fit sm:items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 gap-6 sm:gap-0">
+    <footer className="w-screen border-t border-gray-200 bg-white">
+      <div className="container mx-auto flex w-full flex-col p-4 md:py-8">
+        <div className="flex w-full flex-col items-center justify-between pb-8 sm:flex-row">
+          <Link
+            href="/"
+            className="mb-4 flex w-full items-start sm:w-fit sm:mb-0 sm:items-center"
+          >
+            <span className="whitespace-nowrap text-3xl font-bold text-purple-600">
+              sparks
+            </span>
+          </Link>
+          <nav aria-label="Footer navigation">
+            <ul className="flex w-full flex-col flex-wrap items-start gap-6 text-sm font-medium text-gray-500 sm:w-fit sm:flex-row sm:items-center sm:gap-0">
               {navLinks.map((link) => (
                 <li key={link.label}>
                   <Link
@@ -34,31 +37,31 @@ export default function Footer({
                 </li>
               ))}
             </ul>
-          </div>
-          <div className="flex flex-col items-center border-t border-gray-200 pt-8 justify-center text-sm text-gray-500 text-center">
-            <p className="flex items-center justify-center gap-2">
-              © 2024 All Rights Reserved
-            </p>
-            <p className="flex flex-col sm:flex-row items-center justify-center gap-1 mt-2">
-              A proud initiative
-              <span className="hidden sm:flex">brought to you with</span>{" "}
-              <FontAwesomeIcon
-                icon={faHeart}
-                height={12}
-                width={12}
-                className="text-purple-500 hidden sm:flex"
-              />
-              from{" "}
-              <Link
-                href="https://codezela.com"
-                className="hover:text-purple-600"
-              >
-                Codezela Technologies
-              </Link>
-            </p>
-          </div>
+          </nav>
         </div>
-      </footer>
-    </>
+        <div className="flex flex-col items-center justify-center border-t border-gray-200 pt-8 text-center text-sm text-gray-500">
+          <p className="flex items-center justify-center gap-2">
+            © {currentYear} All Rights Reserved
+          </p>
+          <p className="mt-2 flex flex-col items-center justify-center gap-1 sm:flex-row">
+            A proud initiative
+            <span className="hidden sm:flex">brought to you with</span>
+            <FontAwesomeIcon
+              icon={faHeart}
+              height={12}
+              width={12}
+              className="hidden text-purple-500 sm:flex"
+            />
+            from{" "}
+            <Link
+              href="https://codezela.com"
+              className="hover:text-purple-600"
+            >
+              Codezela Technologies
+            </Link>
+          </p>
+        </div>
+      </div>
+    </footer>
   );
 }

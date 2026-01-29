@@ -7,8 +7,8 @@ import { getPostsByTag } from "@/app/ghost-client";
 export default async function CategoricalPosts(props: { category: string }) {
   const getCategoryPost = await getPostsByTag(props.category, 6);
 
-  if (!getCategoryPost) {
-    throw new Error("Failed to load posts");
+  if (!getCategoryPost || getCategoryPost.length === 0) {
+    return null;
   }
 
   return (

@@ -8,8 +8,14 @@ import NewsletterForm from "./newsletter-form";
 export default async function LatestPosts() {
   const getPost = await getPosts(3);
 
-  if (!getPost) {
-    throw new Error("Failed to load posts");
+  if (!getPost || getPost.length === 0) {
+    return (
+      <div className="mx-auto px-4 py-8">
+        <div className="flex min-h-[400px] items-center justify-center rounded-lg border-2 border-dashed border-gray-300">
+          <p className="text-gray-500">No posts available</p>
+        </div>
+      </div>
+    );
   }
 
   return (

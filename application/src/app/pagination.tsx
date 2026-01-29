@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { Pagination } from "@tryghost/content-api";
+import type { Pagination } from "@tryghost/content-api";
 
-export default function Pagination({
+export default function PaginationComponent({
   item,
   currentUrl,
 }: {

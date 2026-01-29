@@ -39,6 +39,7 @@ next-env.d.ts
 
 # VSCode
 .vscode
+.claude/
 
 #Mac
 .DS_Store
